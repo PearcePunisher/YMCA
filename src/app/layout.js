@@ -1,3 +1,4 @@
+import NavTop from './navTop';
 import Navbar from './navbar';
 import Footer from './footer';
 import './globals.css';
@@ -11,8 +12,9 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body>
+        <NavTop />
 				<Navbar />
-				<div className="container">{children}</div>
+				<div className="body-container">{children}</div>
         <Footer />
 			</body>
 		</html>
