@@ -27,7 +27,7 @@ const Navbar = () => {
         </div>
         <div className="flex gap-4">
           <div className="h-9 bg-sky-600 rounded-full flex items-center px-6 py-2.5">
-            <Link href="/give" className="text-center text-white text-sm font-['Cachet Pro'] leading-tight tracking-tight">
+            <Link href="/give" className="text-center text-white text-base font-['Cachet Pro'] leading-tight tracking-tight">
               Give
             </Link>
           </div>
