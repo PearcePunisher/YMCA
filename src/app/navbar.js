@@ -21,18 +21,18 @@ const Navbar = () => {
         <div className="flex gap-6">
           {NavLinks.map((link) => (
             <Link key={link.id} href={link.path} className={isActive(link.path) ? 'text-blue-300' : 'text-white'}>
-              <div className="text-xl font-medium font-['Cachet Pro'] leading-7">{link.name}</div>
+              <div className="text-xl font-medium font-bookC leading-7">{link.name}</div>
             </Link>
           ))}
         </div>
         <div className="flex gap-4">
           <div className="h-9 bg-sky-600 rounded-full flex items-center px-6 py-2.5">
-            <Link href="/give" className="text-center text-white text-base font-['Cachet Pro'] leading-tight tracking-tight">
+            <Link href="/give" className="text-center text-white text-base font-bookC leading-tight tracking-tight">
               Give
             </Link>
           </div>
           <div className="h-9 bg-sky-700 rounded-full flex items-center px-6 py-2.5">
-            <Link href="/join-today" className="text-center text-white text-sm font-['Cachet Pro'] leading-tight tracking-tight">
+            <Link href="/join-today" className="text-center text-white text-sm font-bookC leading-tight tracking-tight">
               Join Today
             </Link>
           </div>

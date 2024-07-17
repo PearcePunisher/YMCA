@@ -12,12 +12,12 @@ const SubHeader = () => {
             />
           </div>
           <div className="flex flex-col">
-            <div className="text-white text-2xl font-medium font-['Cachet Pro'] leading-9">
+            <div className="text-white text-2xl font-medium font-bookC leading-9">
               <a href="/" className="text-white">
                 YMCA of the Pikes Peak Region
               </a>
             </div>
-            <div className="text-white text-xs font-['Cachet Pro'] leading-none tracking-wide">
+            <div className="text-white text-xs font-bookC leading-none tracking-wide">
               <a href="/" className="text-white">
                 A 501(c)(3) Non-Profit Organization
               </a>
@@ -36,7 +36,7 @@ const SubHeader = () => {
           <div className="h-9 rounded-full border border-sky-500 flex items-center px-6 py-2.5">
             <a
               href="/my-account"
-              className="text-center text-white text-sm font-['Cachet Pro'] leading-tight tracking-tight">
+              className="text-center text-white text-sm font-bookC leading-tight tracking-tight">
               My Account
             </a>
           </div>
