@@ -14,7 +14,43 @@
     font-family: "Cachet Bold";
     src: url("/fonts/cachetBold.woff2") format("woff2");
     src: url("/fonts/cachetBold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Verdana";
+    src: url("/fonts/Verdana.woff2") format("woff2");
+    src: url("/fonts/Verdana.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
   }
+  @font-face {
+    font-family: "Verdana Bold";
+    src: url("/fonts/VerdanaBold.woff2") format("woff2");
+    src: url("/fonts/VerdanaBold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Verdana Italic";
+    src: url("/fonts/VerdanaItalic.woff2") format("woff2");
+    src: url("/fonts/VerdanaItalic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "Verdana Bold Italic";
+    src: url("/fonts/VerdanaBoldItalic.woff2") format("woff2");
+    src: url("/fonts/VerdanaBoldItalic.ttf") format("truetype");
+    font-weight: bold;
+    font-style: italic;
+  }
+}
+
+p {
+  font-family: "Verdana", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cachet Bold", sans-serif;
 }
