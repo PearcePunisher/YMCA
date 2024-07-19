@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FindYourYSection from "./components/FindYourYSection.js";
 
 async function fetchHeroCards() {
   const res = await fetch("https://ymcanext.kinsta.cloud/graphql", {
@@ -17,6 +18,11 @@ async function fetchHeroCards() {
                 innerContent
                 title
               }
+              heroBackgroundImage {
+                node {
+                  mediaItemUrl
+                }
+              }
             }
           }
         }
@@ -29,19 +35,22 @@ async function fetchHeroCards() {
   }
 
   const json = await res.json();
-  return json.data.page.homepage.homepageHeroCards;
+  const homepage = json.data.page.homepage;
+  return {
+    homepageHeroCards: homepage.homepageHeroCards,
+    heroBackgroundImage: homepage.heroBackgroundImage.node.mediaItemUrl,
+  };
 }
 
 const Hero = async () => {
-  const homepageHeroCards = await fetchHeroCards();
+  const { homepageHeroCards, heroBackgroundImage } = await fetchHeroCards();
 
   return (
-    <section>
+    <section className="HeroSection">
       <div
         className="relative w-full min-h-[75vh] bg-cover bg-center lg:bg-[center_top_-5rem] bg-no-repeat"
         style={{
-          backgroundImage:
-            "url('http://ymcanext.kinsta.cloud/wp-content/uploads/2024/07/Homepage-Hero-Background.jpeg')",
+          backgroundImage: `url(${heroBackgroundImage})`,
         }}>
         <div className="absolute inset-0 bg-black bg-opacity-25"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
@@ -80,4 +89,14 @@ function getCardBgColor(index) {
   return colors[index % colors.length];
 }
 
-export default Hero;
+const HomePage = () => {
+  return (
+    <>
+      <Hero />
+      <FindYourYSection />
+      {/* Add other sections here as needed */}
+    </>
+  );
+};
+
+export default HomePage;

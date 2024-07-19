@@ -4,7 +4,6 @@ const SubHeader = () => {
       <div className="container w-full mx-auto flex justify-between items-center">
         <div className="flex items-center gap-4">
           <div className="w-16 h-12 flex justify-center items-center">
-            {/* Replace with the logo image */}
             <img
               src="http://ymcanext.kinsta.cloud/wp-content/uploads/2024/07/YMCA_Logo.png"
               alt="YMCA Logo"
@@ -30,7 +29,7 @@ const SubHeader = () => {
             <img
               src="http://ymcanext.kinsta.cloud/wp-content/uploads/2024/07/SearchIcon.png"
               alt="Search"
-              className="w-6 h-6"
+              className="w-6 h-6 aspect-square"
             />
           </button>
           <div className="h-9 rounded-full border border-sky-500 flex items-center px-6 py-2.5">
