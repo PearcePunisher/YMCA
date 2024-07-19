@@ -3,6 +3,7 @@ import Navbar from './navbar';
 import Footer from './footer';
 import './globals.css';
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata = {
 	title: 'YMCA of the Pikes Peak Region',
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body>
+        <Analytics />
         <SpeedInsights />
         <NavTop />
 				<Navbar />
