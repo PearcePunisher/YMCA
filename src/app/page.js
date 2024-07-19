@@ -1,5 +1,11 @@
+// src/app/page.js
 import Link from "next/link";
-import FindYourYSection from "./components/FindYourYSection.js";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+const FindYourYSection = dynamic(() => import("./components/FindYourYSection"), {
+  ssr: false,
+});
 
 async function fetchHeroCards() {
   const res = await fetch("https://ymcanext.kinsta.cloud/graphql", {
@@ -92,7 +98,9 @@ function getCardBgColor(index) {
 const HomePage = () => {
   return (
     <>
-      <Hero />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Hero />
+      </Suspense>
       <FindYourYSection />
       {/* Add other sections here as needed */}
     </>
