@@ -1,5 +1,30 @@
 export const dynamicParams = true;
 
+// *** Storing this here until I can get around to using GraphQL instead of the REST API
+// query PersonalTrainers {
+// 	personalTrainers {
+// 	  edges {
+// 		node {
+// 		  personalTrainersData {
+// 			areasISpecializeIn
+// 			degreesAndCertifications
+// 			firstName
+// 			interestsAndAchievements
+// 			jobTitle
+// 			lastName
+// 			myTrainingPhilosophy
+// 			trainerLocation
+// 			trainerPhoto {
+// 			  node {
+// 				mediaItemUrl
+// 			  }
+// 			}
+// 		  }
+// 		}
+// 	  }
+// 	}
+//   }
+
 export async function generateStaticParams() {
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/pages`
