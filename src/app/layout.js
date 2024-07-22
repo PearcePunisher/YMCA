@@ -7,7 +7,7 @@ import { Analytics } from "@vercel/analytics/react"
 
 export const metadata = {
 	title: 'YMCA of the Pikes Peak Region',
-	description: 'Welcome to the YMCA of the Pikes Peak Region! Our mission is to put Christian principles into practice through programs that build healthy spirit mind and body for all.  ',
+	description: 'Welcome to the YMCA of the Pikes Peak Region! Our mission is to put Christian principles into practice through programs that build healthy spirit mind and body for all.',
 };
 
 export default function RootLayout({ children }) {
