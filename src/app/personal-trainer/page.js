@@ -69,7 +69,7 @@ const PersonalTrainersPage = () => {
   return (
     <div className="flex flex-col items-center">
       <HeroBanner backgroundImage={backgroundImage} title={title} />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-6 container pb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 p-6 container">
         {trainers.map((trainer) => (
           <Link
             href={`/personal-trainer/${trainer.slug}`}
