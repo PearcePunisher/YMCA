@@ -85,31 +85,35 @@ const PersonalTrainerPage = async ({ params }) => {
     notFound();
   }
 
+  const { firstName, lastName, jobTitle, areasISpecializeIn, degreesAndCertifications, interestsAndAchievements, myTrainingPhilosophy, trainerLocation, trainerPhoto } = trainer;
+
   return (
     <div className="single-page">
-      <h2>{`${trainer.firstName} ${trainer.lastName}`}</h2>
+      <h2>{`${firstName} ${lastName}`}</h2>
       <div className="page-content">
-        <img src={trainer.trainerPhoto.node.mediaItemUrl} alt={`${trainer.firstName} ${trainer.lastName}`} />
-        <p>{trainer.jobTitle}</p>
+        {trainerPhoto?.node?.mediaItemUrl && (
+          <img src={trainerPhoto.node.mediaItemUrl} alt={`${firstName} ${lastName}`} />
+        )}
+        <p>{jobTitle}</p>
         <div>
           <h3>Areas I Specialize In</h3>
-          <p>{trainer.areasISpecializeIn}</p>
+          <p>{areasISpecializeIn}</p>
         </div>
         <div>
           <h3>Degrees and Certifications</h3>
-          <p>{trainer.degreesAndCertifications}</p>
+          <p>{degreesAndCertifications}</p>
         </div>
         <div>
           <h3>Interests and Achievements</h3>
-          <p>{trainer.interestsAndAchievements}</p>
+          <p>{interestsAndAchievements}</p>
         </div>
         <div>
           <h3>My Training Philosophy</h3>
-          <p>{trainer.myTrainingPhilosophy}</p>
+          <p>{myTrainingPhilosophy}</p>
         </div>
         <div>
           <h3>Location</h3>
-          <p>{trainer.trainerLocation}</p>
+          <p>{trainerLocation}</p>
         </div>
       </div>
     </div>
