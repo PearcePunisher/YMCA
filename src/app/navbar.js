@@ -9,6 +9,7 @@ const NavLinks = [
   { id: 4, name: 'Find Classes', path: '/classes' },
   { id: 5, name: 'Camps', path: '/camps' },
   { id: 6, name: 'Careers', path: '/careers' },
+  { id: 7, name: 'Personal Trainers', path: '/personal-trainer' },
 ];
 
 const Navbar = () => {

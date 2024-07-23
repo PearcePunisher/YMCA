@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import JoinOurTeam from "./components/JoinOurTeamCTA";
 
 const NavLinks = [
   { id: 1, name: "Programs", path: "/programs" },
@@ -23,7 +24,8 @@ const Footer = () => {
   const isActive = (path) => path === pathname;
 
   return (
-    <footer className="w-full bg-gray-800 text-white px-4 py-8 font-bookC">
+    <footer className="w-full bg-gray-800 text-white pb-20 font-bookC">
+      <JoinOurTeam />
       <div className="container mx-auto flex flex-col lg:flex-row justify-between items-start lg:items-start gap-8">
         <div className="flex flex-col items-start gap-4">
           <a href="/">
