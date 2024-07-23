@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import HeroBanner from "../components/HeroBanner"; // Adjust the import path as needed
 
 async function fetchPersonalTrainers() {
   const res = await fetch("https://ymcanext.kinsta.cloud/graphql", {
@@ -62,18 +63,22 @@ const PersonalTrainersPage = () => {
     return <div className="text-red-500">Error: {error}</div>;
   }
 
+  const backgroundImage = "https://ymcanext.kinsta.cloud/wp-content/uploads/2024/07/DowntownColoradoSprings-Background-Image-scaled.webp";
+  const title = "Meet our Personal Trainers";
+
   return (
-    <div className="flex flex-col items-center p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+    <div className="flex flex-col items-center">
+      <HeroBanner backgroundImage={backgroundImage} title={title} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-6 container pb-6">
         {trainers.map((trainer) => (
           <Link
             href={`/personal-trainer/${trainer.slug}`}
             key={trainer.slug}
             className="block w-full h-full rounded-xl border border-gray-300 bg-white hover:shadow-lg transition-shadow duration-300">
             <div className="h-full flex flex-col justify-start items-start">
-              <div className="w-full h-48 border-b-4 border-blue-500 flex justify-center items-center">
+              <div className="w-full h-auto border-b-4 border-blue-500 flex justify-center items-center">
                 <img
-                  className="w-full h-full object-cover rounded-t-xl"
+                  className="w-full h-full object-cover rounded-t-xl aspect-square"
                   src={
                     trainer.personalTrainersData.trainerPhoto?.node
                       ?.mediaItemUrl || "https://via.placeholder.com/276x194"
@@ -81,7 +86,7 @@ const PersonalTrainersPage = () => {
                   alt={`${trainer.personalTrainersData.firstName} ${trainer.personalTrainersData.lastName}`}
                 />
               </div>
-              <div className="flex-grow p-4 flex flex-col justify-between">
+              <div className="flex-grow p-4 flex flex-col justify-between w-full">
                 <div>
                   <h3 className="text-gray-800 text-base font-medium leading-normal tracking-wide">
                     {`${trainer.personalTrainersData.firstName} ${trainer.personalTrainersData.lastName}`}
@@ -91,14 +96,9 @@ const PersonalTrainersPage = () => {
                   </p>
                 </div>
                 <div className="flex justify-end items-center gap-2 mt-4">
-                  <button className="h-10 rounded-full border border-gray-500 flex justify-center items-center px-6 py-2.5">
-                    <span className="text-blue-700 text-sm leading-tight tracking-tight">
-                      Call
-                    </span>
-                  </button>
                   <button className="h-10 bg-blue-700 rounded-full flex justify-center items-center px-6 py-2.5">
                     <span className="text-white text-sm leading-tight tracking-tight">
-                      Directions
+                      Read More
                     </span>
                   </button>
                 </div>
