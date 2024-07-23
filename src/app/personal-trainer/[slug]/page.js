@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import HeroBanner from '@/app/components/HeroBanner';
 
 async function fetchPersonalTrainer(slug) {
   const res = await fetch("https://ymcanext.kinsta.cloud/graphql", {
@@ -63,9 +64,6 @@ export async function generateStaticParams() {
 
   const json = await res.json();
 
-  // Log the entire response to understand its structure
-  console.log("Response JSON:", JSON.stringify(json, null, 2));
-
   if (!json.data || !json.data.personalTrainers) {
     console.error("Unexpected response structure:", json);
     throw new Error("Unexpected response structure");
@@ -89,8 +87,9 @@ const PersonalTrainerPage = async ({ params }) => {
 
   return (
     <div className="single-page">
+      <HeroBanner title={`${firstName} ${lastName}`} />
       <h2>{`${firstName} ${lastName}`}</h2>
-      <div className="page-content">
+      <div className="page-content container">
         {trainerPhoto?.node?.mediaItemUrl && (
           <img src={trainerPhoto.node.mediaItemUrl} alt={`${firstName} ${lastName}`} />
         )}

@@ -98,9 +98,10 @@ const PersonalTrainersPage = () => {
           // Render skeletons while loading
           Array.from({ length: 10 }).map((_, index) => <SkeletonCard key={index} />)
         ) : (
-          trainers.map((trainer) => {
+          trainers.map((trainer, index) => {
             const { firstName, lastName, trainerLocation, trainerPhoto } = trainer.personalTrainersData;
             const locations = Array.isArray(trainerLocation) ? trainerLocation.join(' & ') : trainerLocation;
+            const imgLoading = index < 10 ? "eager" : "lazy";
 
             return (
               <Link
@@ -113,6 +114,7 @@ const PersonalTrainersPage = () => {
                       className="w-full h-full object-cover rounded-t-xl aspect-square"
                       src={trainerPhoto?.node?.mediaItemUrl || "https://via.placeholder.com/276x194"}
                       alt={`${firstName} ${lastName}`}
+                      loading={imgLoading}
                     />
                   </div>
                   <div className="flex-grow p-4 flex flex-col justify-between w-full">
