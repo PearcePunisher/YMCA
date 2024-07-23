@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation';
-import HeroBanner from '@/app/components/HeroBanner';
-
+import HeroBanner from '@/app/components/HeroBanner'; // Adjust the import path as needed
 async function fetchPersonalTrainer(slug) {
   const res = await fetch("https://ymcanext.kinsta.cloud/graphql", {
     method: "POST",
@@ -32,15 +31,12 @@ async function fetchPersonalTrainer(slug) {
       variables: { slug },
     }),
   });
-
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-
   const json = await res.json();
   return json.data.personalTrainer?.personalTrainersData || null;
 }
-
 export async function generateStaticParams() {
   const res = await fetch("https://ymcanext.kinsta.cloud/graphql", {
     method: "POST",
@@ -61,33 +57,36 @@ export async function generateStaticParams() {
       `,
     }),
   });
-
   const json = await res.json();
-
+  // Log the entire response to understand its structure
+  console.log("Response JSON:", JSON.stringify(json, null, 2));
   if (!json.data || !json.data.personalTrainers) {
     console.error("Unexpected response structure:", json);
     throw new Error("Unexpected response structure");
   }
-
   const trainers = json.data.personalTrainers.edges.map(edge => edge.node);
-
   return trainers.map(trainer => ({
     slug: trainer.slug,
   }));
 }
-
 const PersonalTrainerPage = async ({ params }) => {
   const trainer = await fetchPersonalTrainer(params.slug);
-
   if (!trainer) {
     notFound();
   }
-
   const { firstName, lastName, jobTitle, areasISpecializeIn, degreesAndCertifications, interestsAndAchievements, myTrainingPhilosophy, trainerLocation, trainerPhoto } = trainer;
-
+  const backgroundImage = "https://ymcanext.kinsta.cloud/wp-content/uploads/2024/07/DowntownColoradoSprings-Background-Image-scaled.webp";
+  function header() {
+    const title = { job: jobTitle, first: firstName, last: lastName}
+      return (
+        <div className="Header">
+          {title.job}"//"{title.first} {title.last}
+        </div>
+      )
+  }
   return (
     <div className="single-page">
-      <HeroBanner title={`${firstName} ${lastName}`} />
+      <HeroBanner backgroundImage={backgroundImage} title={header()} />
       <h2>{`${firstName} ${lastName}`}</h2>
       <div className="page-content container">
         {trainerPhoto?.node?.mediaItemUrl && (
@@ -118,5 +117,4 @@ const PersonalTrainerPage = async ({ params }) => {
     </div>
   );
 };
-
 export default PersonalTrainerPage;
