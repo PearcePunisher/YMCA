@@ -4,11 +4,13 @@ const SubHeader = () => {
       <div className="container w-full mx-auto flex justify-between items-center">
         <div className="flex items-center gap-4">
           <div className="w-16 h-12 flex justify-center items-center">
-            <img
-              src="http://ymcanext.kinsta.cloud/wp-content/uploads/2024/07/YMCA_Logo.png"
-              alt="YMCA Logo"
-              className="w-full h-full object-contain"
-            />
+            <a href="/">
+              <img
+                src="http://ymcanext.kinsta.cloud/wp-content/uploads/2024/07/YMCA_Logo.png"
+                alt="YMCA Logo"
+                className="w-full h-full object-contain"
+              />
+            </a>
           </div>
           <div className="flex flex-col">
             <div className="text-white text-2xl font-medium font-bookC leading-9">
