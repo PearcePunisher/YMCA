@@ -76,7 +76,18 @@ const PersonalTrainerPage = async ({ params }) => {
   if (!trainer) {
     notFound();
   }
-  const { firstName, lastName, jobTitle, areasISpecializeIn, degreesAndCertifications, interestsAndAchievements, myTrainingPhilosophy, trainerLocation, trainerPhoto } = trainer;
+  const {
+    firstName,
+    lastName,
+    jobTitle,
+    areasISpecializeIn,
+    degreesAndCertifications,
+    interestsAndAchievements,
+    myTrainingPhilosophy,
+    trainerLocation,
+    trainerPhoto
+  } = trainer;
+  
   const backgroundImage = "https://ymcanext.kinsta.cloud/wp-content/uploads/2024/07/DowntownColoradoSprings-Background-Image-scaled.webp";
   const title = `${jobTitle} // ${firstName} ${lastName}`;
 
