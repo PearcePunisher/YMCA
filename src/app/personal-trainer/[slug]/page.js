@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import HeroBanner from '@/app/components/HeroBanner'; // Adjust the import path as needed
+
 async function fetchPersonalTrainer(slug) {
   const res = await fetch("https://ymcanext.kinsta.cloud/graphql", {
     method: "POST",
@@ -37,6 +38,7 @@ async function fetchPersonalTrainer(slug) {
   const json = await res.json();
   return json.data.personalTrainer?.personalTrainersData || null;
 }
+
 export async function generateStaticParams() {
   const res = await fetch("https://ymcanext.kinsta.cloud/graphql", {
     method: "POST",
@@ -68,6 +70,7 @@ export async function generateStaticParams() {
     slug: trainer.slug,
   }));
 }
+
 const PersonalTrainerPage = async ({ params }) => {
   const trainer = await fetchPersonalTrainer(params.slug);
   if (!trainer) {
@@ -75,45 +78,40 @@ const PersonalTrainerPage = async ({ params }) => {
   }
   const { firstName, lastName, jobTitle, areasISpecializeIn, degreesAndCertifications, interestsAndAchievements, myTrainingPhilosophy, trainerLocation, trainerPhoto } = trainer;
   const backgroundImage = "https://ymcanext.kinsta.cloud/wp-content/uploads/2024/07/DowntownColoradoSprings-Background-Image-scaled.webp";
-  function header() {
-    const title = { job: jobTitle, first: firstName, last: lastName}
-      return (
-        <div className="Header">
-          {title.job}"//"{title.first} {title.last}
-        </div>
-      )
-  }
+  const title = `${jobTitle} // ${firstName} ${lastName}`;
+
   return (
     <div className="single-page">
-      <HeroBanner backgroundImage={backgroundImage} title={header()} />
-      <h2>{`${firstName} ${lastName}`}</h2>
-      <div className="page-content container">
+      <HeroBanner backgroundImage={backgroundImage} title={title} />
+      <div className="page-content container mx-auto px-4 py-20 flex-row flex lg:flex-nowrap flex-wrap gap-8 lg:gap-20">
         {trainerPhoto?.node?.mediaItemUrl && (
-          <img src={trainerPhoto.node.mediaItemUrl} alt={`${firstName} ${lastName}`} />
+          <img className="h-auto rounded-xl mb-8 w-full lg:w-auto" src={trainerPhoto.node.mediaItemUrl} alt={`${firstName} ${lastName}`} />
         )}
-        <p>{jobTitle}</p>
-        <div>
-          <h3>Areas I Specialize In</h3>
-          <p>{areasISpecializeIn}</p>
-        </div>
-        <div>
-          <h3>Degrees and Certifications</h3>
-          <p>{degreesAndCertifications}</p>
-        </div>
-        <div>
-          <h3>Interests and Achievements</h3>
-          <p>{interestsAndAchievements}</p>
-        </div>
-        <div>
-          <h3>My Training Philosophy</h3>
-          <p>{myTrainingPhilosophy}</p>
-        </div>
-        <div>
-          <h3>Location</h3>
-          <p>{trainerLocation}</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-lg font-bold text-gray-800">Areas I Specialize In</h3>
+            <p className="text-sm text-gray-700">{areasISpecializeIn}</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-gray-800">Degrees and Certifications</h3>
+            <p className="text-sm text-gray-700">{degreesAndCertifications}</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-gray-800">Interests and Achievements</h3>
+            <p className="text-sm text-gray-700">{interestsAndAchievements}</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-gray-800">My Training Philosophy</h3>
+            <p className="text-sm text-gray-700">{myTrainingPhilosophy}</p>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold text-gray-800">Location</h3>
+            <p className="text-sm text-gray-700">{trainerLocation}</p>
+          </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default PersonalTrainerPage;
