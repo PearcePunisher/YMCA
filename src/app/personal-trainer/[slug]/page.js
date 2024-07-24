@@ -58,8 +58,7 @@ export async function generateStaticParams() {
     }),
   });
   const json = await res.json();
-  // Log the entire response to understand its structure
-  console.log("Response JSON:", JSON.stringify(json, null, 2));
+
   if (!json.data || !json.data.personalTrainers) {
     console.error("Unexpected response structure:", json);
     throw new Error("Unexpected response structure");
