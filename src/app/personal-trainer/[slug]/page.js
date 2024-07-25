@@ -33,10 +33,16 @@ async function fetchPersonalTrainer(slug) {
     }),
   });
   if (!res.ok) {
+    console.error("Failed to fetch data", res.statusText);
     throw new Error("Failed to fetch data");
   }
   const json = await res.json();
-  return json.data.personalTrainer?.personalTrainersData || null;
+  
+  if (!json.data || !json.data.personalTrainer) {
+    console.error("Unexpected response structure:", json);
+    return null;
+  }
+  return json.data.personalTrainer.personalTrainersData || null;
 }
 
 export async function generateStaticParams() {
