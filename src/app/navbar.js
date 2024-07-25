@@ -16,6 +16,8 @@ const Navbar = () => {
   const pathname = usePathname();
   const isActive = (path) => path === pathname;
 
+  console.log('Navbar component initialized');
+
   return (
     <nav className="w-full bg-zinc-800 bg-opacity-90 border-t-2 border-sky-600 px-4 py-2.5 flex justify-center items-center absolute z-10">
       <div className="container w-full mx-auto flex justify-between items-center">

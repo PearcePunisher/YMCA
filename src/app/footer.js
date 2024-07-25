@@ -23,6 +23,8 @@ const Footer = () => {
   const pathname = usePathname();
   const isActive = (path) => path === pathname;
 
+  console.log('Footer component initialized');
+
   return (
     <footer className="w-full bg-gray-800 text-white pb-20 font-bookC">
       <JoinOurTeam />

@@ -1,4 +1,8 @@
+"use client";
+
 const SubHeader = () => {
+  console.log('SubHeader component initialized');
+
   return (
     <div className="w-full mx-auto bg-gray-800 px-4 py-3 flex flex-col justify-center items-center ">
       <div className="container w-full mx-auto flex justify-between items-center">
@@ -27,7 +31,6 @@ const SubHeader = () => {
         </div>
         <div className="flex items-center gap-4">
           <button className="flex justify-center items-center">
-            {/* Replace with the search icon */}
             <img
               src="http://ymcanext.kinsta.cloud/wp-content/uploads/2024/07/SearchIcon.png"
               alt="Search"

@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import HeroBanner from '@/app/components/HeroBanner'; // Adjust the import path as needed
+import HeroBanner from '@/app/components/HeroBanner';
 
 async function fetchPersonalTrainer(slug) {
   const res = await fetch("https://ymcanext.kinsta.cloud/graphql", {
@@ -9,34 +9,41 @@ async function fetchPersonalTrainer(slug) {
     },
     body: JSON.stringify({
       query: `
-        query PersonalTrainer($slug: ID!) {
-          personalTrainer(id: $slug, idType: SLUG) {
-            personalTrainersData {
-              areasISpecializeIn
-              degreesAndCertifications
-              firstName
-              interestsAndAchievements
-              jobTitle
-              lastName
-              myTrainingPhilosophy
-              trainerLocation
-              trainerPhoto {
-                node {
-                  mediaItemUrl
+      query PersonalTrainers {
+        personalTrainers(first: 100) {
+          edges {
+            node {
+              slug
+              personalTrainersData {
+                firstName
+                lastName
+                jobTitle
+                areasISpecializeIn
+                degreesAndCertifications
+                interestsAndAchievements
+                myTrainingPhilosophy
+                trainerLocation
+                trainerPhoto {
+                  node {
+                    mediaItemUrl
+                  }
                 }
               }
             }
           }
         }
+      }
       `,
-      variables: { slug },
     }),
   });
+
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
+
   const json = await res.json();
-  return json.data.personalTrainer?.personalTrainersData || null;
+  const trainers = json.data.personalTrainers.edges.map(edge => edge.node);
+  return trainers.find(trainer => trainer.slug === slug)?.personalTrainersData || null;
 }
 
 export async function generateStaticParams() {
@@ -86,10 +93,10 @@ const PersonalTrainerPage = async ({ params }) => {
     myTrainingPhilosophy,
     trainerLocation,
     trainerPhoto
-  } = trainer;
-  
+  } = trainer || {};
+
   const backgroundImage = "https://ymcanext.kinsta.cloud/wp-content/uploads/2024/07/DowntownColoradoSprings-Background-Image-scaled.webp";
-  const title = `${jobTitle} // ${firstName} ${lastName}`;
+  const title = jobTitle ? `${jobTitle} // ${firstName} ${lastName}` : `${firstName} ${lastName}`;
 
   return (
     <div className="single-page">
