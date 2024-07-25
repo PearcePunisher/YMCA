@@ -18,8 +18,10 @@ export default function RootLayout({ children }) {
       <body>
         <Analytics />
         <SpeedInsights />
-        <NavTop />
-        <Navbar />
+        <div className="sticky top-0 z-10">
+          <NavTop />
+          <Navbar />
+        </div>
         <div className="body-container">{children}</div>
         <Footer />
       </body>
