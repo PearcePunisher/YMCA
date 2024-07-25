@@ -2,10 +2,17 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import EmblaCarousel from "./components/EmblaCarousel";
+import './emblaCSS/embla.css';
+// import './emblaCSS/base.css';
 
 const FindYourYSection = dynamic(() => import("./components/FindYourYSection"), {
   ssr: false,
 });
+
+const OPTIONS = {}
+const SLIDE_COUNT = 5
+const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
 async function fetchHeroCards() {
   const res = await fetch("https://ymcanext.kinsta.cloud/graphql", {
@@ -102,6 +109,9 @@ const HomePage = () => {
         <Hero />
       </Suspense>
       <FindYourYSection />
+      <section className="bg-white my-24">
+        <EmblaCarousel options={OPTIONS} slides={SLIDES} />
+      </section>
       {/* Add other sections here as needed */}
     </>
   );
