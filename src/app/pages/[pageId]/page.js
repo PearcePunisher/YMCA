@@ -5,6 +5,8 @@ export async function generateStaticParams() {
 		`${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/pages`
 	);
 	const pages = await response.json();
+	
+	console.log('Pages response:', pages); // Log the response here
 
 	return pages.map((page) => ({
 		pageId: page.id.toString(),
@@ -16,6 +18,9 @@ async function getSinglePage(pageId) {
 		`${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/pages/${pageId}`
 	);
 	const page = await response.json();
+	
+	console.log('Single page response:', page); // Log the response here
+
 	return page;
 }
 
