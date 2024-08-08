@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import HeroBanner from '../components/HeroBanner'; // Adjust the import path as needed
+import HeroBanner from '@/app/components/HeroBanner';
 
 async function fetchPersonalTrainers() {
   const res = await fetch("https://ymcanext.kinsta.cloud/graphql", {
@@ -105,7 +105,7 @@ const PersonalTrainersPage = () => {
 
             return (
               <Link
-                href={`/personal-trainer/${trainer.slug}`}
+                href={`/pages/personal-trainer/${trainer.slug}`}
                 key={trainer.slug}
                 className="block w-full h-full rounded-xl border border-gray-300 bg-white hover:shadow-lg transition-shadow duration-300">
                 <div className="h-full flex flex-col justify-start items-start">
